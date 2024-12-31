@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Home.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="content-head">
+            <img src="img/logo.png" alt="UTT" class="logo">
+        </div>
+        <div class="menu-container">
+            <div class="menu-link collapsible" onclick="window.location.href='Home.html'">
+                <span class="menu-text-home">Trang chủ</span>
+            </div>
+            <div class="menu-item">
+                <div class="menu-link collapsible" onclick="showStudentManagement()">
+                    <span class="menu-text">Quản lý sinh viên</span>
+                </div>
+            </div>
+            <div class="menu-item"></div>
+                <div class="menu-link collapsible" onclick="window.location.href='dulieu.php'">
+                    <span class="menu-text">Xuất/Nhập dữ liệu</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-link collapsible">
+                    <span class="menu-text">Quản lý tín chỉ</span>
+                    <span class="menu-toggle">▼</span>
+                </div>
+                <ul class="submenu">
+                    <li><a href="#" id="show-course-list">Danh sách tín chỉ</a></li>
+                    <li><a href="#" id="show-credit-registration">Đăng ký tín chỉ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-sidebar">
+            <div class="profile-avatar">
+                <img src="img/me.jpg" alt="Avatar">
+            </div>
+            <span class="profile-name">Trần Đức Anh</span>
+            <ul class="submenu">
+                <li><a href="file:///Pict/IMG">Đổi ảnh</a></li>
+                <li><a href="#">Đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar-main">
+        <h2 id="header2" style="margin-top: 25px;">Danh Sách Sinh Viên</h2>
+        <div class="dark-mode-toggle">
+            <button id="darkModeButton" onclick="toggleDarkMode()"></button>
+        </div>
+        <hr>
+        <div id="Find">
+            <div>
+                <input type="text" name="textSearch" id="textSearch" placeholder="Tìm kiếm theo mã sinh viên, tên..."
+                    autocomplete="off">
+            </div>
+        </div>
+
+        <section class="table" id="student-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã sinh viên</th>
+                        <th>Họ và tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Lớp</th>
+                        <th>Khoa</th>
+                        <th class="edit-column">Chỉnh sửa</th>
+                    </tr>
+                </thead>
+                <tbody id="student-list">
+                    <!-- Dữ liệu sinh viên sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Form chỉnh sửa sinh viên -->
+        <div class="edit-form-container" style="display: none;">
+            <h2>Chỉnh sửa sinh viên</h2>
+            <hr>
+            <form class="edit-form">
+                <div class="form-group">
+                    <label for="studentId">Mã sinh viên</label>
+                    <input type="text" id="studentId" name="studentId">
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Họ và tên</label>
+                    <input type="text" id="fullName" name="fullName">
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Ngày sinh</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                </div>
+                <div class="form-group">
+                    <label for="className">Lớp</label>
+                    <input type="text" id="className" name="className">
+                </div>
+                <div class="form-group">
+                    <label for="major">Khoa</label>
+                    <input type="text" id="major" name="major">
+                </div>
+                <div class="buttons">
+                    <button type="button" class="cancel" onclick="hideEditForm()">Hủy</button>
+                    <button type="submit" class="update">Cập nhật</button>
+                </div>
+            </form>
+        </div>
+        <div class="button" style="display: none;">
+            <div class="addSinhVien">
+                <button type="button" onclick="showPopup()">Thêm sinh viên</button>
+            </div>
+            <div class="EditSinhVien">
+                <button type="button" onclick="showEditStudent()">Sửa sinh viên</button>
+            </div>
+            <div class="DeleteSinhVien">
+                <button type="button" onclick="showDeleteStudent()">Xóa sinh viên</button>
+            </div>
+        </div>
+
+        <!-- Bảng danh sách tín chỉ -->
+        <section class="table" id="course-list-table" style="display: none;">
+            <div class="button">
+                <div class="addCourse">
+                    <button type="button" onclick="showAddCoursePopup()">Thêm tín chỉ</button>
+                </div>
+                <div class="EditCourse">
+                    <button type="button" onclick="showEditCourse()">Sửa tín chỉ</button>
+                </div>
+                <div class="DeleteCourse">
+                    <button type="button" onclick="showDeleteCoursePopup()">Xóa tín chỉ</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã môn học</th>
+                        <th>Tên môn học</th>
+                        <th>Số tín chỉ</th>
+                        <th>Giảng viên</th>
+                        <th>Số lượng</th>
+                    </tr>
+                </thead>
+                <tbody id="course-list">
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Bảng đăng ký tín chỉ -->
+        <section class="table" id="credit-registration-table" style="display: none;">
+            <div class="student-search-credit">
+                <input type="text" 
+                       id="studentSearchForCredit" 
+                       placeholder="Nhập mã sinh viên để đăng ký..."
+                       required>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã môn học</th>
+                        <th>Tên môn học</th>
+                        <th>Số tín chỉ</th>
+                        <th>Giảng viên</th>
+                        <th>Số lượng</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody id="registration-list">
+                </tbody>
+            </table>
+            <div class="credit-registration-buttons">
+                <button class="register-button" onclick="registerCourses()">Đăng ký</button>
+                <button class="cancel-button" onclick="cancelRegistration()">Hủy</button>
+            </div>
+        </section>
+
+        <!-- Bảng môn học đã đăng ký -->
+        <section class="table" id="registered-courses-table" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã môn học</th>
+                        <th>Tên môn học</th>
+                        <th>Số tín chỉ</th>
+                        <th>Giảng viên</th>
+                        <th>Ngày đăng ký</th>
+                    </tr>
+                </thead>
+                <tbody id="registered-courses-list">
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Popup Thêm Sinh Viên -->
+    <div id="overlay"></div>
+    <div id="addStudentPopup">
+        <form id="addStudentForm" onsubmit="addStudent(event)">
+            <h2>Thêm sinh viên</h2>
+            <label for="code">Mã sinh viên:<span style="color: red">*</span></label>
+            <input type="text" id="code" required>
+            <label for="name">Họ và tên:<span style="color: red">*</span></label>
+            <input type="text" id="name" required>
+            <label for="birthDay">Ngày sinh:<span style="color: red">*</span></label>
+            <input type="date" id="birthDay" required>
+            <label for="class">Lớp:<span style="color: red">*</span></label>
+            <input type="text" id="class" required>
+            <label for="fos">Khoa:<span style="color: red">*</span></label>
+            <input type="text" id="fos" required>
+            <div class="button-group">
+                <button type="submit" id="addPopup">Thêm</button>
+                <button type="button" class="close-btn" onclick="closeAddPopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Xóa Sinh Viên -->
+    <div id="overlayDelete"></div>
+    <div id="deleteStudentPopup">
+        <form id="deleteStudentForm" onsubmit="deleteStudent(event)">
+            <h2>Xóa sinh viên</h2>
+            <label for="code">Mã sinh viên:</label>
+            <input type="text" id="code" name="code" required>
+            <div class="button-group">
+                <button type="submit" id="deletePopup">Xóa</button>
+                <button type="button" class="close-btn" onclick="closeDeletePopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Chỉnh Sửa Sinh Viên -->
+    <div id="overlayEdit"></div>
+    <div id="editStudentPopup">
+        <form id="editStudentForm" onsubmit="editStudent(event)">
+            <h2>Chỉnh sửa sinh viên</h2>
+            <label for="code">Mã sinh viên:</label>
+            <input type="text" id="code" required>
+            <label for="name">Họ và tên:</label>
+            <input type="text" id="name" required>
+            <label for="birthDay">Ngày sinh:</label>
+            <input type="date" id="birthDay" required>
+            <label for="class">Lớp:</label>
+            <input type="text" id="class" required>
+            <label for="fos">Khoa:</label>
+            <input type="text" id="fos" required>
+            <div class="button-group">
+                <button type="submit" id="editPopup">Lưu</button>
+                <button type="button" class="close-btn" onclick="closeEditPopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Thêm Tín Chỉ -->
+    <div id="overlayAddCourse" class="overlay"></div>
+    <div id="addCoursePopup" class="popup">
+        <form id="addCourseForm" onsubmit="addCourse(event)">
+            <h2>Thêm tín chỉ</h2>
+            <label for="courseCode">Mã môn học:<span style="color: red">*</span></label>
+            <input type="text" id="courseCode" required>
+            <label for="courseName">Tên môn học:<span style="color: red">*</span></label>
+            <input type="text" id="courseName" required>
+            <label for="credits">Số tín chỉ:<span style="color: red">*</span></label>
+            <input type="number" id="credits" required min="1" max="10">
+            <label for="lecturer">Giảng viên:<span style="color: red">*</span></label>
+            <input type="text" id="lecturer" required>
+            <label for="maxStudents">Số lượng tối đa:<span style="color: red">*</span></label>
+            <input type="number" id="maxStudents" required min="1">
+            <div class="button-group">
+                <button type="submit">Thêm</button>
+                <button type="button" class="close-btn" onclick="closeAddCoursePopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Sửa Tín Chỉ -->
+    <div id="overlayEditCourse" class="overlay"></div>
+    <div id="editCoursePopup" class="popup">
+        <form id="editCourseForm" onsubmit="editCourse(event)">
+            <h2>Sửa tín chỉ</h2>
+            <label for="courseCodeEdit">Mã môn học:</label>
+            <input type="text" id="courseCodeEdit" readonly>
+            <label for="courseNameEdit">Tên môn học:<span style="color: red">*</span></label>
+            <input type="text" id="courseNameEdit" required>
+            <label for="creditsEdit">Số tín chỉ:<span style="color: red">*</span></label>
+            <input type="number" id="creditsEdit" required min="1" max="10">
+            <label for="lecturerEdit">Giảng viên:<span style="color: red">*</span></label>
+            <input type="text" id="lecturerEdit" required>
+            <label for="maxStudentsEdit">Số lượng tối đa:<span style="color: red">*</span></label>
+            <input type="number" id="maxStudentsEdit" required min="1">
+            <div class="button-group">
+                <button type="submit">Lưu</button>
+                <button type="button" class="close-btn" onclick="closeEditCoursePopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Xóa Tín Chỉ -->
+    <div id="overlayDeleteCourse" class="overlay"></div>
+    <div id="deleteCoursePopup" class="popup">
+        <form id="deleteCourseForm" onsubmit="deleteCourse(event)">
+            <h2>Xóa tín chỉ</h2>
+            <label for="courseCodeDelete">Mã môn học:</label>
+            <input type="text" id="courseCodeDelete" required>
+            <div class="button-group">
+                <button type="submit">Xóa</button>
+                <button type="button" class="close-btn" onclick="closeDeleteCoursePopup()">Đóng</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Popup Danh sách sinh viên đăng ký -->
+    <div id="studentListPopup" class="student-list-popup">
+        <h2>Danh sách sinh viên đăng ký môn: <span id="courseTitle"></span></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã sinh viên</th>
+                    <th>Họ và tên</th>
+                    <th>Lớp</th>
+                    <th>Ngày đăng ký</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="registeredStudentsList">
+            </tbody>
+        </table>
+        <div class="button-group">
+            <button type="button" class="close-btn" onclick="closeStudentListPopup()">Đóng</button>
+        </div>
+    </div>
+
+    <script src="Home.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.0/dist/sweetalert2.min.js"></script>
+</body>
+
+</html>

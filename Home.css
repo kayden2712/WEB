@@ -1,0 +1,1918 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    overflow-x: hidden;
+    /* Ẩn thanh cuộn ngang nếu vẫn còn */
+    box-sizing: border-box;
+    /* Đảm bảo padding và border không ảnh hưởng đến kích thước thực tế */
+}
+
+/* Sidebar container */
+.sidebar {
+    position: relative;
+    width: 20%;
+    background: linear-gradient(to bottom, #E2FBCE, #076653, #E3EF26);
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border: 2px black solid;
+    padding-bottom: 80px;
+    /* Tạo khoảng trống cho profile */
+    overflow: hidden;
+    /* Tắt cuộn nội dung */
+}
+
+.sidebar hr {
+    position: relative;
+    margin-top: 29px;
+    height: 2px;
+    border: none;
+    background-color: #000000;
+}
+
+.sidebar h3 {
+    text-align: center;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 23px;
+}
+
+/* Menu item */
+.menu-item {
+    margin-bottom: 15px;
+}
+
+.menu-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 20px;
+    background-color: #AAF400FF;
+}
+
+.menu-link:hover {
+    background-color: #89ff00;
+}
+
+.menu-text-Profile {
+    width: 40px;
+    /* Chiều rộng của hình ảnh */
+    height: 40px;
+    /* Chiều cao của hình ảnh */
+    border-radius: 50%;
+    /* Làm bo góc thành hình tròn */
+    overflow: hidden;
+    /* Ẩn các phần dư bên ngoài */
+    object-fit: cover;
+    /* Giữ tỷ lệ hình ảnh phù hợp */
+    border: 2px solid #ccc;
+    /* Viền xung quanh (tuỳ chọn) */
+}
+
+.menu-toggle {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* Submenu */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 20px;
+    display: none;
+}
+
+.submenu li {
+    margin: 5px 0;
+}
+
+.submenu a {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    padding: 8px;
+    border-radius: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 20px;
+    background-color: #AAF400FF;
+    font-weight: bold;
+
+}
+
+.submenu a:hover {
+    background-color: #89ff00;
+}
+
+.content_head {
+    flex-grow: 1;
+    /* Phần này sẽ mở rộng để chiếm phần còn lại */
+    width: 100%;
+    height: 600px;
+    background-color: rgb(143, 143, 143);
+}
+
+.sidebar-main {
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    border: 2px black solid;
+    height: 99.5%;
+    /* Chiều cao full màn hình */
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /* Ẩn thanh cuộn của sidebar-main */
+    position: relative;
+}
+
+.sidebar-main h2 {
+    text-align: center;
+    font-size: 35px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.sidebar-main hr {
+    height: 2px;
+    background-color: #000000;
+    border: none;
+}
+.menu-item-profile {
+    position: absolute;
+    bottom: 70px; /* Điều chỉnh vị trí để hiển thị phía trên profile-sidebar */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu-item-profile .submenu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    margin: 0;
+    display: none;
+}
+
+.menu-item-profile .submenu li {
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item-profile .submenu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.menu-item-profile .submenu a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Dark mode styles */
+.dark-mode .menu-item-profile .submenu {
+    background-color: #333;
+    border-color: #444;
+}
+
+.dark-mode .menu-item-profile .submenu a {
+    color: #fff;
+}
+
+.dark-mode .menu-item-profile .submenu a:hover {
+    background-color: #444;
+}
+
+.collapsible-profile {
+    position: fixed;
+    margin-top: -75px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    /* Thêm chỉ thị con trỏ để cho biết mục có thể nhấn vào */
+    padding: 5px;
+    height: 35px;
+}
+
+.collapsible-profile .menu-text {
+    color: #000000;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.collapsible-profile:hover {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.collapsible {
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.menu-item-profile .submenu {
+    position: absolute;
+    /* Đặt submenu ở vị trí tuyệt đối */
+    /*    top: -100%; !* Di chuyển submenu lên phía trên của mục profile *!*/
+    /*    left: 0; !* Căn trái cho submenu *!*/
+    background-color: rgba(255, 255, 255, 0);
+    /* Màu nền với độ mờ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Tạo hiệu ứng bóng cho submenu */
+    display: none;
+    /* Ẩn submenu mặc định */
+    z-index: 1000;
+    /* Đảm bảo nó hiển thị phía trên các thành phần khác */
+}
+
+/* Hiển thị submenu khi được mở */
+
+.menu-item-profile .submenu.open {
+    display: block;
+    /* Hiển thị submenu */
+}
+
+/* Đảm bảo rằng bảng có z-index cao hơn và không bị đè lên */
+.table {
+    margin: 20px;
+    width: calc(100% - 40px);
+    height: calc(98vh - 250px);
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+}
+
+/* Style cho bảng */
+.table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+}
+
+/* Style cho header của bảng */
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table th {
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 16px;
+    text-align: center;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #45a049;
+}
+
+/* Style cho các ô trong bảng */
+.table td {
+    padding: 14px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+/* Style cho các hàng trong tbody */
+.table tbody tr {
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #f0f7ff;
+    transform: scale(1.003);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style cho hàng được chọn */
+.table tbody tr.selected {
+    background-color: #e3f2fd !important;
+    border-left: 4px solid #2196F3;
+}
+
+/* Tùy chỉnh thanh cuộn */
+.table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Dark mode cho bảng */
+.dark-mode .table th {
+    background: linear-gradient(to bottom, #2c3e50, #2c3e50);
+    border-color: #34495e;
+}
+
+.dark-mode .table tbody tr {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.dark-mode .table tbody tr:nth-child(even) {
+    background-color: #34495e;
+}
+
+.dark-mode .table tbody tr:hover {
+    background-color: #3c546d;
+}
+
+.dark-mode .table tbody tr.selected {
+    background-color: #1a2634 !important;
+    border-left: 4px solid #3498db;
+}
+
+#Find {
+    text-align: center;
+    /* Căn giữa nội dung bên trong */
+    margin: 0 auto;
+    /* Căn giữa bản thân theo chiều ngang */
+}
+
+#Find button:hover {
+    background-color: #3a519d;
+}
+
+#btnSearch {
+    background-color: #333333;
+    color: white;
+}
+
+
+.menu-link .menu-text-home a {
+    color: #000000;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+#Find {
+    display: flex;
+    /* Đặt các phần tử con theo hàng ngang */
+    justify-content: right;
+    /* Căn giữa các phần tử con theo chiều ngang */
+    /*align-items: center; !* Căn giữa các phần tử con theo chiều dọc *!*/
+    gap: 15px;
+    /* Khoảng cách giữa các phần tử */
+    margin: 20px auto;
+    /* Căn giữa phần tử Find và thêm khoảng cách trn dưới */
+    flex-wrap: wrap;
+    /* Cho phép nội dung xuống hàng khi không đủ không gian */
+    padding-right: 35px;
+}
+
+#Find button {
+    border-radius: 4px;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#Find button:hover {
+    background-color: #000000;
+    color: white;
+}
+
+#Find input {
+    border-radius: 4px;
+    width: 400px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.edit-form-container {
+    padding: 20px;
+}
+
+.edit-form .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.edit-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-form .buttons {
+    margin-top: 20px;
+}
+
+.edit-form button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-form .cancel {
+    background-color: #ccc;
+}
+
+.edit-form .update {
+    background-color: #0f0;
+    color: white;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#addStudentPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    width: 400px;
+}
+
+#addStudentPopup input {
+    width: 96%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+#addStudentPopup label {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+#addStudentPopup button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#addStudentPopup h2 {
+    font-family: "Palatino Linotype", Times, serif;
+    text-align: center;
+}
+
+#overlayDelete {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#deleteStudentPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    width: 400px;
+}
+
+#deleteStudentPopup input {
+    width: 96%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+#deleteStudentPopup label {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+#deleteStudentPopup button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#StudentPopup h2 {
+    font-family: "Palatino Linotype", Times, serif;
+    text-align: center;
+}
+
+#overlayEdit {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#editStudentPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    width: 400px;
+}
+
+#editStudentPopup h2 {
+    font-family: "Palatino Linotype", Times, serif;
+    text-align: center;
+}
+
+#editStudentPopup label {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+#editStudentPopup input {
+    width: 96%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+#editStudentPopup button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#editStudentPopup .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+#editStudentPopup .close-btn {
+    background: linear-gradient(45deg, #ff4800, #00eeff);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+/* Add styles for collapsible menu and submenu */
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-link {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-toggle {
+    float: right;
+}
+
+.submenu {
+    display: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.submenu li {
+    padding: 5px 0;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.menu-item.active .submenu {
+    display: block;
+}
+
+.menu-item.active .menu-toggle {
+    transform: rotate(90deg);
+}
+
+.button {
+    border-top: 2px solid #000000;
+    position: absolute;
+    bottom: 0;
+    justify-content: left;
+    gap: 30px;
+    padding: 10px;
+    margin-top: 300px;
+    animation: fadeIn 0.3s ease;
+    border-top: 2px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.button div {
+    padding: 20px;
+}
+
+.menu-toggle {
+    color: black;
+}
+
+/* Dark Mode cho toàn bộ trang */
+body.dark-mode {
+    background-color: #1a1a1a;
+    /* Nền tối */
+    color: #e4e4e4;
+    /* Chữ sáng */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode cho sidebar */
+.sidebar.dark-mode {
+    background-color: #2a2a2a;
+    /* Màu nền tối */
+    color: #e4e4e4;
+    /* Màu chữ sáng */
+    border-color: #444;
+    /* Đổi màu viền */
+}
+
+/* Dark Mode cho thẻ h3 trong sidebar */
+.sidebar.dark-mode h3 {
+    color: #f0f0f0;
+}
+
+/* Dark Mode cho các liên kết và menu */
+.sidebar.dark-mode .menu-link,
+.sidebar.dark-mode .submenu a {
+    background-color: #3a3a3a;
+    /* Màu nền menu */
+    color: #e4e4e4;
+    /* Màu chữ menu */
+}
+
+.sidebar.dark-mode .menu-link:hover,
+.sidebar.dark-mode .submenu a:hover {
+    background-color: #555555;
+    /* Hiệu ứng hover */
+}
+
+/* Dark Mode cho khu vực chính */
+.sidebar-main.dark-mode {
+    background-color: #2a2a2a;
+    /* Nền tối */
+    color: #e4e4e4;
+    /* Chữ sáng */
+}
+
+/* Dark Mode cho bảng */
+.sidebar-main.dark-mode .table th,
+.sidebar-main.dark-mode .table td {
+    background-color: #333333;
+    /* Màu nền các ô */
+    color: #e4e4e4;
+    /* Màu chữ */
+    border-color: #444;
+    /* Viền ô */
+}
+
+.sidebar-main.dark-mode .table th {
+    background-color: #444444;
+    /* Màu nền tiêu đề bảng */
+}
+
+/* Dark Mode cho các nút */
+.dark-mode button {
+    background-color: #444444;
+    /* Nền nút */
+    color: #e4e4e4;
+    /* Chữ */
+    border: 1px solid #555555;
+}
+
+.dark-mode button:hover {
+    background-color: #555555;
+    /* Hover nút */
+}
+
+/* Dark Mode cho popup */
+.dark-mode #addStudentPopup {
+    background-color: #333333;
+    /* Nền popup */
+    color: #e4e4e4;
+    /* Chữ popup */
+}
+
+.dark-mode #addStudentPopup input {
+    background-color: #444444;
+    /* Ô nhập */
+    color: #e4e4e4;
+    /* Chữ ô nhập */
+    border: 1px solid #555555;
+}
+
+.dark-mode #addStudentPopup button {
+    background-color: #444444;
+    /* Nền nút popup */
+    color: #e4e4e4;
+    /* Chữ nút popup */
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    margin-top: -55px;
+    padding-left: 800px;
+}
+
+/* Style cho profile trong sidebar */
+.profile-sidebar {
+    position: absolute;
+    /* Thay đổi từ fixed thành absolute */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Chiếm toàn bộ chiều rộng của sidebar */
+    background-color: rgb(223, 222, 222);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: 3px solid #000000;
+    box-sizing: border-box;
+}
+
+/* Style cho container của avatar */
+.profile-avatar {
+    min-width: 45px;
+    /* Đảm bảo kích thước cố định */
+    height: 45px;
+    position: relative;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #333;
+    object-fit: cover;
+}
+
+/* Style cho tên người dùng */
+.profile-name {
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 18px;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    /* Cho phép tên mở rộng để lấp đầy không gian còn lại */
+}
+
+/* Dark mode styles */
+.dark-mode .profile-sidebar {
+    background-color: #2a2a2a;
+    border-top-color: #444;
+}
+
+.dark-mode .profile-avatar img {
+    border-color: #fff;
+}
+
+.dark-mode .profile-name {
+    color: #e4e4e4;
+}
+
+/* Hover effect */
+.profile-sidebar:hover {
+    background-color: rgb(213, 212, 212);
+    cursor: pointer;
+}
+
+.dark-mode .profile-sidebar:hover {
+    background-color: #333333;
+}
+
+/* Animation cho hover */
+.profile-sidebar {
+    transition: all 0.3s ease;
+}
+
+.profile-avatar img {
+    transition: transform 0.3s ease;
+}
+
+.profile-sidebar:hover .profile-avatar img {
+    transform: scale(1.1);
+}
+
+/* Style cho nút Dark Mode */
+#darkModeButton {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    /* Giảm padding để nút nhỏ gọn hơn */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    /* Thay đổi thành inline-flex */
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    /* Ngăn text xuống dòng */
+}
+
+#darkModeButton::before {
+    content: '🌙';
+    font-size: 16px;
+}
+
+#darkModeButton:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Khi Dark Mode được bật */
+.dark-mode #darkModeButton {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.dark-mode #darkModeButton::before {
+    content: '☀️';
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    /* Điều chỉnh khoảng cách từ mép phải */
+    z-index: 100;
+    margin: 0;
+    /* Xóa margin */
+    padding: 0;
+    /* Xóa padding */
+}
+
+#addPopup {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+#closePopup {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+.button {
+    background-color: #ffffff;
+    width: 100%;
+    height: 75px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    animation: fadeIn 0.3s ease;
+    z-index: 2;
+}
+
+
+.button button {
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: -5px;
+}
+
+/* Style riêng cho từng nút */
+.addSinhVien button {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+}
+
+.EditSinhVien button {
+    background: linear-gradient(45deg, #2196F3, #1976D2);
+}
+
+.DeleteSinhVien button {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+}
+
+/* Hiệu ứng hover */
+.button button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button button:active {
+    transform: translateY(1px);
+}
+
+/* Hiệu ứng ripple */
+.button button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.5s ease;
+}
+
+.button button:active::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0s;
+}
+
+/* Dark mode styles */
+.dark-mode .button button {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .addSinhVien button {
+    background: linear-gradient(45deg, #388E3C, #2E7D32);
+}
+
+.dark-mode .EditSinhVien button {
+    background: linear-gradient(45deg, #1565C0, #0D47A1);
+}
+
+.dark-mode .DeleteSinhVien button {
+    background: linear-gradient(45deg, #C62828, #B71C1C);
+}
+
+/* Animation cho fade in/out */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+/* Style cho nút đóng */
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 15px;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Style cho button group */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 10px;
+}
+
+/* Style cho alert trong popup */
+.popup-alert {
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    animation: slideInDown 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Style cho từng loại alert */
+.popup-alert.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #ef5350;
+}
+
+.popup-alert.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+}
+
+/* Icon cho alert */
+.popup-alert::before {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.popup-alert.error::before {
+    content: '⚠️';
+}
+
+.popup-alert.success::before {
+    content: '✅';
+}
+
+/* Animation cho alert */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Progress bar cho alert tự động đóng */
+.popup-alert::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: currentColor;
+    animation: progress 3s linear;
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/* Dark mode styles cho alert */
+.dark-mode .popup-alert.error {
+    background-color: #311b1b;
+    color: #ef5350;
+}
+
+.dark-mode .popup-alert.success {
+    background-color: #1b311b;
+    color: #4caf50;
+}
+
+/* Thêm animation cho popup */
+@keyframes fadeOut {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+}
+
+/* Thêm style cho hàng được chọn */
+#student-list tr.selected {
+    background-color: #e0e0e0;
+}
+
+#student-list tr:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+/* Dark mode */
+.dark-mode #student-list tr.selected {
+    background-color: #404040;
+}
+
+.dark-mode #student-list tr:hover {
+    background-color: #303030;
+}
+
+/* Thêm transition cho sidebar và sidebar-main */
+.sidebar,
+.sidebar-main,
+.button {
+    transition: all 0.3s ease;
+}
+
+/* Style cho bảng đăng ký tín chỉ */
+#credit-registration-table {
+    width: 95%;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+.credit-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.credit-header h2 {
+    color: #076653;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.credit-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    color: #555;
+    font-size: 15px;
+}
+
+.credit-info strong {
+    color: #076653;
+    font-size: 16px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+#credit-registration-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#credit-registration-table th {
+    background: linear-gradient(135deg, #076653, #2E8B57);
+    color: white;
+    padding: 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+#student-table th {
+    background: linear-gradient(135deg, #076653, #2E8B57);
+    color: white;
+    padding: 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+#registered-courses-table th {
+    background: linear-gradient(135deg, #076653, #2E8B57);
+    color: white;
+    padding: 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+#credit-registration-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+#credit-registration-table tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+/* Style cho checkbox */
+.course-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    position: relative;
+    appearance: none;
+    border: 2px solid #076653;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.course-checkbox:checked {
+    background-color: #076653;
+    border-color: #076653;
+}
+
+.course-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Style cho nút đăng ký */
+.credit-registration-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.register-button,
+.cancel-button {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.register-button {
+    background: #076653;
+    color: white;
+    border: none;
+}
+
+.register-button:hover {
+    background: #064d3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(7, 102, 83, 0.2);
+}
+
+.cancel-button {
+    background: rgb(243, 0, 0);
+    color: #ffffff;
+    border: none;
+}
+
+.cancel-button:hover {
+    background: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Dark mode styles */
+.dark-mode #credit-registration-table {
+    background: #1a1a1a;
+}
+
+.dark-mode .credit-header h2 {
+    color: #2E8B57;
+}
+
+.dark-mode .credit-info {
+    color: #ccc;
+}
+
+.dark-mode .credit-info strong {
+    color: #2E8B57;
+}
+
+.dark-mode #credit-registration-table table {
+    border-color: #333;
+}
+
+.dark-mode #credit-registration-table td {
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+
+.dark-mode #credit-registration-table tr:hover {
+    background-color: #2d2d2d;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    #credit-registration-table {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .credit-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .register-button,
+    .cancel-button {
+        padding: 10px 20px;
+    }
+}
+
+/* Style cho ô tìm kiếm sinh viên trong đăng ký tín chỉ */
+.student-search-credit {
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+#studentSearchForCredit {
+    width: 100%;
+    height: 30px;
+    padding: 10px 15px 10px 45px;
+    border: 3px solid #000000;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fff url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>') no-repeat 15px center;
+    background-size: 25px;
+}
+
+#studentSearchForCredit:focus {
+    border-color: #076653;
+    box-shadow: 0 0 0 3px rgba(7, 102, 83, 0.1);
+    outline: none;
+}
+
+#studentSearchForCredit::placeholder {
+    color: #999;
+}
+
+/* Dark mode styles */
+.dark-mode #studentSearchForCredit {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    color: #e0e0e4;
+}
+
+/* Loading Spinner */
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #076653;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Course List Table */
+#course-list-table {
+    width: 95%;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#course-list-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#course-list-table th {
+    background: linear-gradient(135deg, #076653, #2E8B57);
+    color: white;
+    padding: 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+#course-list-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+#course-list-table tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark mode support */
+.dark-mode #course-list-table {
+    background: #2d2d2d;
+}
+
+.dark-mode #course-list-table th {
+    background: linear-gradient(135deg, #054d3e, #1a5038);
+}
+
+.dark-mode #course-list-table td {
+    color: #e0e0e0;
+    border-bottom-color: #404040;
+}
+
+.dark-mode #course-list-table tr:hover {
+    background-color: #363636;
+}
+
+
+
+
+/* Cải thiện style cho menu items trong sidebar */
+.menu-item {
+    margin-bottom: 15px;
+}
+
+.menu-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 20px;
+    background-color: #AAF400FF;
+}
+
+.menu-link:hover {
+    background: linear-gradient(145deg, #95d600, #89ff00);
+    transform: translateX(5px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style cho submenu */
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 15px;
+}
+
+.submenu li {
+    margin: 8px 0;
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+    color: #000000;
+    text-decoration: none;
+    font-family: "Palatino Linotype", Times, serif;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submenu a:hover {
+    background: linear-gradient(145deg, #e6e6e6, #dcdcdc);
+    transform: translateX(5px);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.15);
+}
+
+/* Style cho menu toggle */
+.menu-toggle {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+    color: #000000;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item.active .menu-toggle {
+    transform: rotate(180deg);
+}
+
+/* Dark mode adjustments */
+.dark-mode .content-head {
+    background-color: #2a2a2a;
+    border-bottom-color: #444;
+}
+
+.dark-mode .menu-link {
+    background: linear-gradient(145deg, #3a3a3a, #333333);
+    color: #ffffff;
+}
+
+.dark-mode .menu-link:hover {
+    background: linear-gradient(145deg, #333333, #2a2a2a);
+}
+
+.dark-mode .submenu a {
+    background: linear-gradient(145deg, #2a2a2a, #222222);
+    color: #ffffff;
+}
+
+.dark-mode .submenu a:hover {
+    background: linear-gradient(145deg, #222222, #1a1a1a);
+}
+
+/* Style cho nút chỉnh sửa trong bảng */
+.edit-button {
+    background-color: #a02323;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-left: 45px;
+}
+
+.edit-button:hover {
+    background-color: #ff0000;
+}
+
+/* Ẩn cột chỉnh sửa mặc định */
+.edit-column {
+    display: none;
+}
+
+/* Hiển thị cột chỉnh sửa khi có class show-edit */
+.show-edit .edit-column {
+    display: table-cell;
+}
+
+/* Style cho content-head */
+.content-head {
+    position: relative;
+    width: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* Bỏ padding */
+    border-bottom: 2px solid #000000;
+    box-sizing: border-box;
+    height: 96px;
+    margin: -15px -15px 15px -15px;
+    /* Bù trừ padding của sidebar */
+    width: calc(100% + 30px);
+    /* Bù trừ padding của sidebar */
+}
+
+.logo {
+    width: 100%;
+    /* Logo full width */
+    height: 90px;
+    /* Chiều cao bằng với content-head */
+    object-fit: contain;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+/* Style cho nút trong bảng tín chỉ */
+.button {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0;
+}
+
+.button button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.addCourse button {
+    background-color: #28a745;
+    color: white;
+}
+
+.EditCourse button {
+    background-color: #ffc107;
+    color: black;
+}
+
+.DeleteCourse button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.button button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Style cho popup */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1001;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.popup .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-registration-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.cancel-registration-button:hover {
+    background-color: #c82333;
+}
+
+body.swal2-height-auto {
+    height: 100vh !important;
+}
+
+/* Style cho popup danh sách sinh viên đăng ký */
+.student-list-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 800px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.student-list-popup h2 {
+    margin-bottom: 20px;
+    color: #076653;
+    text-align: center;
+}
+
+.student-list-popup table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.student-list-popup th {
+    background: linear-gradient(135deg, #076653, #2E8B57);
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.student-list-popup td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.student-list-popup .close-btn {
+    width: auto;
+    padding: 8px 20px;
+}
+
+/* Dark mode styles */
+.dark-mode .student-list-popup {
+    background: #2d2d2d;
+    color: #e4e4e4;
+}
+
+.dark-mode .student-list-popup td {
+    border-color: #404040;
+}
+
+.cancel-registration-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.cancel-registration-button:hover {
+    background-color: #c82333;
+}
+
+.student-list-popup .button-group {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.student-list-popup .close-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.student-list-popup .close-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Dark mode cho h2 */
+.dark-mode .sidebar-main h2 {
+    color: #ffffff;
+}
+.dark-mode .sidebar-main{
+    background-color: #2d2d2d;
+}
