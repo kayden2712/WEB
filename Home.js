@@ -1212,3 +1212,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Register button not found'); // Debug log
     }
 });
+function logout(){
+    if(confirm("Bạn có chắc chắn muốn đăng xuất?")){
+        window.location.href = 'Login.html';
+    }
+}

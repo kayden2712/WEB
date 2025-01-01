@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng kí - Quản lí đăng kí sinh viên</title>
+    <link rel="stylesheet" href="Register.css">
+</head>
+<body>
+    <div>
+        <form class="controls" id="registerForm">
+            <a href="Login.html"><span id="arrow">&#11013;</span></a>
+            <h1>Đăng kí</h1>
+            <div id="regisForm1">
+                <label for="username">&#x1F464; Nhập tài khoản:<span style="color: red">*</span></label><br>
+                <input type="text" name="username" id="username" placeholder="Tài khoản" required>
+            </div>
+            <div id="regisForm2">
+                <label for="password">&#x1F511; Nhập mật khẩu:<span style="color: red">*</span></label><br>
+                <input type="password" name="password" id="password" placeholder="Mật khẩu" required>
+            </div>
+            <div id="regisForm3">
+                <label for="password_again">&#x1F511; Nhập lại mật khẩu:<span style="color: red">*</span></label><br>
+                <input type="password" name="password_again" id="password_again" placeholder="Mật khẩu" required>
+            </div>
+            <div>
+                <button type="submit" id="register"><b>Đăng kí</b></button>
+            </div>
+            <div id="errorDiv" style="color: red; text-align:center; padding-top: 10px;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("password_again").value;
+            const errorDiv = document.getElementById("errorDiv");
+
+            // Validate form
+            if (!username || !password || !confirmPassword) {
+                errorDiv.textContent = "Vui lòng điền đầy đủ thông tin!";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorDiv.textContent = "Mật khẩu không khớp!";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("username", username);
+            formData.append("password", password);
+
+            try {
+                const response = await fetch("Register.php", {
+                    method: "POST",
+                    body: formData,
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                        alert("Đăng ký thành công!");
+                        window.location.href = "Login.html";
+                } else {
+                    errorDiv.textContent = data.message;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                errorDiv.textContent = "Đã xảy ra lỗi!";
+            }
+        });
+    </script>
+</body>
+</html>

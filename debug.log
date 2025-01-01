@@ -1576,3 +1576,70 @@
 2024-12-31 17:15:38 - Request: /Web111/api.php?action=getStudents
 2024-12-31 17:15:41 - Request: /Web111/api.php?action=getStudents
 2024-12-31 17:15:41 - Request: /Web111/api.php?action=getStudents
+2025-01-01 05:22:47 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:22:48 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:22:49 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:22:50 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:22:55 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:22:57 - Request: /WEB/api.php?action=getCourseList
+2025-01-01 05:22:57 - Getting course list
+2025-01-01 05:22:57 - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'quanlysinhvien.monhoc' doesn't exist
+2025-01-01 05:22:59 - Request: /WEB/api.php?action=getCourses
+2025-01-01 05:22:59 - Getting course list
+2025-01-01 05:22:59 - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'quanlysinhvien.monhoc' doesn't exist
+2025-01-01 05:23:01 - Request: /WEB/api.php?action=getCourses
+2025-01-01 05:23:01 - Getting course list
+2025-01-01 05:23:01 - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'quanlysinhvien.monhoc' doesn't exist
+2025-01-01 05:24:59 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:25:51 - Request: /WEB/api.php?action=addStudent
+2025-01-01 05:25:51 - Error: Mã sinh viên đã tồn tại trong hệ thống
+2025-01-01 05:25:54 - Request: /WEB/api.php?action=addStudent
+2025-01-01 05:25:54 - Error: Mã sinh viên đã tồn tại trong hệ thống
+2025-01-01 05:26:03 - Request: /WEB/api.php?action=addStudent
+2025-01-01 05:26:04 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:26:04 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:26:09 - Request: /WEB/api.php?action=getCourseList
+2025-01-01 05:26:09 - Getting course list
+2025-01-01 05:26:09 - Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'quanlysinhvien.monhoc' doesn't exist
+2025-01-01 05:34:10 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:34:11 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:34:14 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:34:33 - Request: /WEB/api.php?action=getCourseList
+2025-01-01 05:34:33 - Getting course list
+2025-01-01 05:34:33 - Found 3 courses
+2025-01-01 05:34:33 - Request: /WEB/api.php?action=getCourses
+2025-01-01 05:34:33 - Getting course list
+2025-01-01 05:34:33 - Found 3 courses
+2025-01-01 05:34:37 - Request: /WEB/api.php?action=getCourseList
+2025-01-01 05:34:37 - Getting course list
+2025-01-01 05:34:37 - Found 3 courses
+2025-01-01 05:39:22 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:41:32 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:43:43 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:43:43 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:43:58 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:43:58 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:44:37 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:44:38 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:07 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:08 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:17 - Request: /WEB/api.php?action=addStudent
+2025-01-01 05:49:18 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:18 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:25 - Request: /WEB/api.php?action=getStudents
+2025-01-01 05:49:44 - Request: /WEB/api.php?action=editStudent
+2025-01-01 05:49:46 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:20:08 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:20:24 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:27:21 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:27:41 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:27:44 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:27:54 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:27:57 - Request: /WEB/api.php?action=searchStudent&keyword=d
+2025-01-01 06:28:01 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:28:03 - Request: /WEB/api.php?action=searchStudent&keyword=SV
+2025-01-01 06:28:07 - Request: /WEB/api.php?action=getStudents
+2025-01-01 06:28:10 - Request: /WEB/api.php?action=searchStudent&keyword=S
+2025-01-01 06:28:16 - Request: /WEB/api.php?action=searchStudent&keyword=Sv
+2025-01-01 06:28:20 - Request: /WEB/api.php?action=searchStudent&keyword=S
+2025-01-01 06:28:24 - Request: /WEB/api.php?action=getStudents

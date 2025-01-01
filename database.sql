@@ -1,3 +1,5 @@
+
+
 -- Tạo database nếu chưa tồn tại
 CREATE DATABASE IF NOT EXISTS quanlysinhvien
 CHARACTER SET utf8mb4 
@@ -49,15 +51,15 @@ CREATE TABLE monhoc (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Thêm bảng đăng ký môn học
-CREATE TABLE dangkymonhoc (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    MaSV VARCHAR(20),
-    MaMH VARCHAR(20),
-    NgayDangKy DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (MaSV) REFERENCES sinhvien(MaSV),
-    FOREIGN KEY (MaMH) REFERENCES monhoc(MaMH),
-    UNIQUE KEY unique_dangky (MaSV, MaMH)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    CREATE TABLE dangkymonhoc (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        MaSV VARCHAR(20),
+        MaMH VARCHAR(20),
+        NgayDangKy DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (MaSV) REFERENCES sinhvien(MaSV),
+        FOREIGN KEY (MaMH) REFERENCES monhoc(MaMH),
+        UNIQUE KEY unique_dangky (MaSV, MaMH)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Thêm dữ liệu mẫu cho môn học
 INSERT INTO monhoc (MaMH, TenMH, SoTC, GiangVien, SoLuongMax) VALUES 

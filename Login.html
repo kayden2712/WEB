@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QLSV</title>
+    <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+    <div id="loginAccount">
+        <h1>Đăng nhập</h1>
+        <div class="login_box">
+            <form class="login" id="login_form" onsubmit="login(event)">
+                <label for="username">
+                    &#x1F464; Nhập tài khoản: <span style="color: red">*</span>
+                </label>
+                <input
+                    type="text"
+                    placeholder="Tài khoản"
+                    name="username"
+                    id="username"
+                    required />
+                <label for="password">
+                    &#x1F511; Nhập mật khẩu: <span style="color: red">*</span>
+                </label>
+                <input
+                    type="password"
+                    placeholder="Mật khẩu"
+                    name="password"
+                    id="password"
+                    required />
+                <button class="but" type="submit" id="btn_login">
+                    <b>Đăng nhập</b>
+                </button>
+                <a href="Register.html">
+                    <button type="button" id="btn_regis"><b>Đăng ký</b></button>
+                </a>
+                <div
+                    id="error"
+                    style="color: red; text-align: center; margin-top: 10px"></div>
+            </form>
+        </div>
+    </div>
+    <script>
+        async function login(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorDiv = document.getElementById("error");
+
+            const formData = new FormData();
+            formData.append("username", username);
+            formData.append("password", password);
+
+            try {
+                const response = await fetch("login.php", {
+                    method: "POST",
+                    body: formData,
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    window.location.href = "Home.html";
+                } else {
+                    errorDiv.textContent = data.message;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                errorDiv.textContent = "Đã xảy ra lỗi!";
+            }
+        }
+    </script>
+</body>
+
+</html>
