@@ -1,5 +1,3 @@
-
-
 -- Tạo database nếu chưa tồn tại
 CREATE DATABASE IF NOT EXISTS quanlysinhvien
 CHARACTER SET utf8mb4 
@@ -10,6 +8,17 @@ USE quanlysinhvien;
 
 -- Xóa bảng nếu tồn tại
 DROP TABLE IF EXISTS sinhvien;
+
+-- Tạo bảng tài khoản
+CREATE DATABASE user_management;
+USE user_management;
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    registration_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_login_time DATETIME DEFAULT NULL
+);
 
 -- Tạo bảng sinh viên
 CREATE TABLE sinhvien (
@@ -51,18 +60,27 @@ CREATE TABLE monhoc (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Thêm bảng đăng ký môn học
-    CREATE TABLE dangkymonhoc (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        MaSV VARCHAR(20),
-        MaMH VARCHAR(20),
-        NgayDangKy DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (MaSV) REFERENCES sinhvien(MaSV),
-        FOREIGN KEY (MaMH) REFERENCES monhoc(MaMH),
-        UNIQUE KEY unique_dangky (MaSV, MaMH)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE dangkymonhoc (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    MaSV VARCHAR(20),
+    MaMH VARCHAR(20),
+    NgayDangKy DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (MaSV) REFERENCES sinhvien(MaSV),
+    FOREIGN KEY (MaMH) REFERENCES monhoc(MaMH),
+    UNIQUE KEY unique_dangky (MaSV, MaMH)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Thêm dữ liệu mẫu cho môn học
 INSERT INTO monhoc (MaMH, TenMH, SoTC, GiangVien, SoLuongMax) VALUES 
 ('CNTT001', 'Lập trình Java', 3, 'Nguyễn Văn X', 40),
 ('CNTT002', 'Cơ sở dữ liệu', 4, 'Trần Thị Y', 35),
 ('CNTT003', 'Mạng máy tính', 3, 'Lê Văn Z', 30);
+
+-- Tạo bảng user_avatars để lưu đường dẫn ảnh
+CREATE TABLE user_avatars (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id VARCHAR(50) NOT NULL,
+    avatar_path VARCHAR(255) NOT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user (user_id)
+);

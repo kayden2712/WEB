@@ -16,7 +16,7 @@ body {
 .sidebar {
     position: relative;
     width: 20%;
-    background: linear-gradient(to bottom, #E2FBCE, #076653, #E3EF26);
+    background-color: #ffffff;
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     border: 2px black solid;
@@ -52,32 +52,27 @@ body {
     align-items: center;
     cursor: pointer;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 7px;
     font-weight: bold;
-    color: #000000;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-family: "Palatino Linotype", Times, serif;
     font-size: 20px;
-    background-color: #AAF400FF;
+    background-color: #f2feb3;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .menu-link:hover {
-    background-color: #89ff00;
+    background-color: #d9ea84;
 }
 
 .menu-text-Profile {
     width: 40px;
-    /* Chiều rộng của hình ảnh */
     height: 40px;
-    /* Chiều cao của hình ảnh */
     border-radius: 50%;
-    /* Làm bo góc thành hình tròn */
     overflow: hidden;
-    /* Ẩn các phần dư bên ngoài */
     object-fit: cover;
-    /* Giữ tỷ lệ hình ảnh phù hợp */
     border: 2px solid #ccc;
-    /* Viền xung quanh (tuỳ chọn) */
 }
 
 .menu-toggle {
@@ -119,7 +114,7 @@ body {
     /* Phần này sẽ mở rộng để chiếm phần còn lại */
     width: 100%;
     height: 600px;
-    background-color: rgb(143, 143, 143);
+    background-color: rgb(209, 205, 205);
 }
 
 .sidebar-main {
@@ -127,7 +122,7 @@ body {
     padding: 0;
     margin: 0;
     width: 80%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(223, 220, 220);
     border: 2px black solid;
     height: 99.5%;
     /* Chiều cao full màn hình */
@@ -148,9 +143,11 @@ body {
     background-color: #000000;
     border: none;
 }
+
 .menu-item-profile {
     position: absolute;
-    bottom: 70px; /* Điều chỉnh vị trí để hiển thị phía trên profile-sidebar */
+    bottom: 70px;
+    /* Điều chỉnh vị trí để hiển thị phía trên profile-sidebar */
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -295,6 +292,7 @@ body {
 
 /* Style cho các hàng trong tbody */
 .table tbody tr {
+    font-family: "Palatino Linotype", Times, serif;
     background-color: #ffffff;
     transition: all 0.3s ease;
 }
@@ -613,9 +611,14 @@ button {
 }
 
 #editStudentPopup .close-btn {
-    background: linear-gradient(45deg, #ff4800, #00eeff);
-    color: rgb(0, 0, 0);
+    background-color: darkred;
+    color: rgb(255, 255, 255);
     font-weight: bold;
+}
+
+#editStudentPopup .close-btn:hover {
+    background-color: red;
+    color: rgb(255, 255, 255);
 }
 
 /* Add styles for collapsible menu and submenu */
@@ -923,12 +926,65 @@ body.dark-mode {
     font-weight: bold;
     font-size: 15px;
     font-family: "Palatino Linotype", Times, serif;
+    background-color: darkgreen;
+    color: white;
+    border-radius: 4px;
+    border: none;
+}
+
+#addPopup:hover {
+    background-color: green;
+    color: rgb(255, 255, 255);
+}
+
+#editPopup {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+    background-color: darkgreen;
+    color: white;
+    border-radius: 4px;
+    border: none;
+}
+
+#editPopup:hover {
+    background-color: green;
+    color: rgb(255, 255, 255);
+}
+
+#deletePopup {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Palatino Linotype", Times, serif;
+    background-color: darkgreen;
+    color: white;
+    border-radius: 4px;
+    border: none;
+}
+
+#deletePopup:hover {
+    background-color: green;
+    color: rgb(255, 255, 255);
 }
 
 #closePopup {
     font-weight: bold;
     font-size: 15px;
     font-family: "Palatino Linotype", Times, serif;
+}
+
+#save {
+    background-color: darkgreen;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
+    border-radius: 4px;
+}
+
+#save:hover {
+    background-color: green;
+    color: rgb(255, 255, 255);
 }
 
 .button {
@@ -1057,8 +1113,8 @@ body.dark-mode {
 
 /* Style cho nút đóng */
 .close-btn {
-    background-color: #f44336;
-    color: white;
+    background-color: darkred;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px;
     width: 100%;
@@ -1072,7 +1128,7 @@ body.dark-mode {
 }
 
 .close-btn:hover {
-    background-color: #d32f2f;
+    background-color: red;
 }
 
 /* Style cho button group */
@@ -1085,6 +1141,23 @@ body.dark-mode {
 .button-group button {
     flex: 1;
     padding: 10px;
+}
+
+.button-group-course {
+    display: flex;
+    gap: 10px;
+    /*Cách nút xanh với đỏ*/
+}
+
+.button-group-course button {
+    flex: 1;
+    height: 50px;
+    width: 200px;
+}
+
+.button-group-course #save {
+    margin-top: 10px;
+    border: none;
 }
 
 /* Style cho alert trong popup */
@@ -1289,6 +1362,21 @@ body.dark-mode {
     text-align: center;
     font-size: 15px;
     white-space: nowrap;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+.dark-mode #student-table th {
+    background: linear-gradient(135deg, #E2FBCE, #17f5d7, #076653);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
+}
+
+.dark-mode #student-table td :nth-child(odd) {
+    background-color: #b504eb;
+    color: white;
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
 }
 
 #registered-courses-table th {
@@ -1299,11 +1387,13 @@ body.dark-mode {
     text-align: center;
     font-size: 15px;
     white-space: nowrap;
+    font-family: "Palatino Linotype", Times, serif;
 }
 
 #credit-registration-table td {
     padding: 12px 15px;
     border-bottom: 1px solid #eee;
+    font-family: "Palatino Linotype", Times, serif;
     vertical-align: middle;
 }
 
@@ -1347,41 +1437,27 @@ body.dark-mode {
     margin-top: 30px;
 }
 
-.register-button,
-.cancel-button {
+.register-button {
     padding: 12px 30px;
     border-radius: 8px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.register-button {
-    background: #076653;
+    background: darkblue;
     color: white;
     border: none;
+    font-family: "Palatino Linotype", Times, serif;
 }
+
 
 .register-button:hover {
-    background: #064d3d;
+    background: #0460eb;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(7, 102, 83, 0.2);
-}
-
-.cancel-button {
-    background: rgb(243, 0, 0);
-    color: #ffffff;
-    border: none;
-}
-
-.cancel-button:hover {
-    background: #dc3545;
-    color: white;
-    transform: translateY(-2px);
 }
 
 /* Dark mode styles */
@@ -1566,27 +1642,6 @@ body.dark-mode {
     margin-bottom: 15px;
 }
 
-.menu-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 15px;
-    font-weight: bold;
-    color: #000000;
-    text-decoration: none;
-    font-family: "Palatino Linotype", Times, serif;
-    font-size: 20px;
-    background-color: #AAF400FF;
-}
-
-.menu-link:hover {
-    background: linear-gradient(145deg, #95d600, #89ff00);
-    transform: translateX(5px);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 /* Style cho submenu */
 .submenu {
     list-style: none;
@@ -1602,7 +1657,7 @@ body.dark-mode {
     display: block;
     padding: 10px 15px;
     border-radius: 8px;
-    background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+    background-color: #E7F1A8;
     color: #000000;
     text-decoration: none;
     font-family: "Palatino Linotype", Times, serif;
@@ -1613,7 +1668,7 @@ body.dark-mode {
 }
 
 .submenu a:hover {
-    background: linear-gradient(145deg, #e6e6e6, #dcdcdc);
+    background-color: #d9ea84;
     transform: translateX(5px);
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.15);
 }
@@ -1749,7 +1804,7 @@ body.dark-mode {
 
 .button button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Style cho popup */
@@ -1760,7 +1815,7 @@ body.dark-mode {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
@@ -1775,7 +1830,15 @@ body.dark-mode {
     border-radius: 8px;
     z-index: 1001;
     width: 400px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.popup h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Palatino Linotype", Times, serif;
 }
 
 .popup form {
@@ -1906,13 +1969,18 @@ body.swal2-height-auto {
 }
 
 .student-list-popup .close-btn:hover {
-    background-color: #5a6268;
+    background-color: #db1111;
 }
 
 /* Dark mode cho h2 */
 .dark-mode .sidebar-main h2 {
     color: #ffffff;
 }
-.dark-mode .sidebar-main{
+
+.dark-mode .sidebar-main {
     background-color: #2d2d2d;
+}
+
+.dark-mode .menu-toggle {
+    color: #ffffff;
 }

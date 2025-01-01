@@ -24,31 +24,34 @@
                 </div>
             </div>
             <div class="menu-item"></div>
-                <div class="menu-link collapsible" onclick="window.location.href='dulieu.php'">
-                    <span class="menu-text">Xuất/Nhập dữ liệu</span>
-                </div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-link collapsible">
-                    <span class="menu-text">Quản lý tín chỉ</span>
-                    <span class="menu-toggle">▼</span>
-                </div>
-                <ul class="submenu">
-                    <li><a href="#" id="show-course-list">Danh sách tín chỉ</a></li>
-                    <li><a href="#" id="show-credit-registration">Đăng ký tín chỉ</a></li>
-                </ul>
-            </div>
         </div>
-        <div class="profile-sidebar">
-            <div class="profile-avatar">
-                <img src="img/me.jpg" alt="Avatar">
+        <div class="menu-item">
+            <div class="menu-link collapsible">
+                <span class="menu-text">Quản lý tín chỉ</span>
+                <span class="menu-toggle" style="color: rgb(0, 0, 0);">▼</span>
             </div>
-            <span class="profile-name">Trần Đức Anh</span>
             <ul class="submenu">
-                <li><a href="file:///Pict/IMG">Đổi ảnh</a></li>
-                <li><a onclick="logout()">Đăng xuất</a></li>
+                <li><a href="#" id="show-course-list">Danh sách tín chỉ</a></li>
+                <li onclick="hideButton()"><a href="#" id="show-credit-registration">Đăng ký tín chỉ</a></li>
             </ul>
         </div>
+        <div class="menu-link collapsible" onclick="window.location.href='dulieu.php'">
+            <span class="menu-text">Xuất/Nhập dữ liệu</span>
+        </div>
+    </div>
+    <div class="profile-sidebar">
+        <div class="profile-avatar">
+            <img alt="Avatar" id="profileImage">
+        </div>
+        <span class="profile-name">Admin</span>
+        <ul class="submenu">
+            <li>
+                <a href="#" onclick="document.getElementById('imageInput').click(); return false;">Đổi ảnh</a>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            </li>
+            <li onclick="logout()"><a href="#">Đăng xuất</a></li>
+        </ul>
+    </div>
     </div>
 
     <div class="sidebar-main">
@@ -158,10 +161,7 @@
         <!-- Bảng đăng ký tín chỉ -->
         <section class="table" id="credit-registration-table" style="display: none;">
             <div class="student-search-credit">
-                <input type="text" 
-                       id="studentSearchForCredit" 
-                       placeholder="Nhập mã sinh viên để đăng ký..."
-                       required>
+                <input type="text" id="studentSearchForCredit" placeholder="Nhập mã sinh viên để đăng ký..." required>
             </div>
             <table>
                 <thead>
@@ -180,7 +180,6 @@
             </table>
             <div class="credit-registration-buttons">
                 <button class="register-button" onclick="registerCourses()">Đăng ký</button>
-                <button class="cancel-button" onclick="cancelRegistration()">Hủy</button>
             </div>
         </section>
 
@@ -276,8 +275,8 @@
             <input type="text" id="lecturer" required>
             <label for="maxStudents">Số lượng tối đa:<span style="color: red">*</span></label>
             <input type="number" id="maxStudents" required min="1">
-            <div class="button-group">
-                <button type="submit">Thêm</button>
+            <div class="button-group-course">
+                <button type="submit" id="save">Thêm</button>
                 <button type="button" class="close-btn" onclick="closeAddCoursePopup()">Đóng</button>
             </div>
         </form>
@@ -298,8 +297,8 @@
             <input type="text" id="lecturerEdit" required>
             <label for="maxStudentsEdit">Số lượng tối đa:<span style="color: red">*</span></label>
             <input type="number" id="maxStudentsEdit" required min="1">
-            <div class="button-group">
-                <button type="submit">Lưu</button>
+            <div class="button-group-course">
+                <button type="submit" id="save">Lưu</button>
                 <button type="button" class="close-btn" onclick="closeEditCoursePopup()">Đóng</button>
             </div>
         </form>
@@ -312,8 +311,8 @@
             <h2>Xóa tín chỉ</h2>
             <label for="courseCodeDelete">Mã môn học:</label>
             <input type="text" id="courseCodeDelete" required>
-            <div class="button-group">
-                <button type="submit">Xóa</button>
+            <div class="button-group-course">
+                <button type="submit" id="save">Xóa</button>
                 <button type="button" class="close-btn" onclick="closeDeleteCoursePopup()">Đóng</button>
             </div>
         </form>

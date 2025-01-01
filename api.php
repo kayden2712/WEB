@@ -45,23 +45,44 @@ try {
         case 'searchStudent':
             $keyword = trim($_GET['keyword'] ?? '');
             if (empty($keyword)) {
-                throw new Exception('Từ khóa tìm kiếm không được để trống');
+                sendJsonResponse(true, [], 'Vui lòng nhập từ khóa tìm kiếm');
+                break;
             }
             
-            $stmt = $conn->prepare("
-                SELECT * FROM sinhvien 
-                WHERE MaSV LIKE ? 
-                OR HoTen LIKE ?
-                ORDER BY 
-                    CASE WHEN MaSV LIKE ? THEN 0 
-                         WHEN HoTen LIKE ? THEN 1 
-                    ELSE 2 END,
-                    HoTen ASC
-            ");
+            // Cải thiện câu truy vấn SQL để tìm kiếm chính xác hơn
+            $sql = "SELECT * FROM sinhvien 
+                    WHERE MaSV LIKE :exactMatch 
+                       OR MaSV LIKE :keyword
+                       OR HoTen LIKE :keyword 
+                       OR Lop LIKE :keyword
+                       OR Khoa LIKE :keyword
+                    ORDER BY 
+                        CASE 
+                            WHEN MaSV = :exactMatch THEN 1
+                            WHEN MaSV LIKE :startsWith THEN 2
+                            WHEN HoTen LIKE :startsWith THEN 3
+                            WHEN Lop = :exactMatch THEN 4
+                            WHEN Khoa = :exactMatch THEN 5
+                            ELSE 6 
+                        END,
+                        MaSV ASC,
+                        HoTen ASC";
             
-            $searchPattern = "%$keyword%";
-            $stmt->execute([$searchPattern, $searchPattern, $searchPattern, $searchPattern]);
-            sendJsonResponse(true, $stmt->fetchAll(PDO::FETCH_ASSOC));
+            $stmt = $conn->prepare($sql);
+            
+            // Bind các tham số tìm kiếm
+            $stmt->bindValue(':exactMatch', $keyword, PDO::PARAM_STR);
+            $stmt->bindValue(':keyword', "%$keyword%", PDO::PARAM_STR);
+            $stmt->bindValue(':startsWith', "$keyword%", PDO::PARAM_STR);
+            
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            sendJsonResponse(
+                true, 
+                $results, 
+                empty($results) ? 'Không tìm thấy sinh viên nào' : null
+            );
             break;
 
         case 'addStudent':
@@ -494,6 +515,60 @@ try {
             $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             sendJsonResponse(true, $students);
+            break;
+
+        case 'uploadAvatar':
+            if ($method !== 'POST') {
+                throw new Exception('Method not allowed');
+            }
+
+            // Kiểm tra xem có file được upload không
+            if (!isset($_FILES['avatar'])) {
+                throw new Exception('Không tìm thấy file ảnh');
+            }
+
+            $file = $_FILES['avatar'];
+            $fileName = $file['name'];
+            $fileType = $file['type'];
+            $fileTmpName = $file['tmp_name'];
+            $fileError = $file['error'];
+
+            // Kiểm tra lỗi upload
+            if ($fileError !== UPLOAD_ERR_OK) {
+                throw new Exception('Lỗi khi upload file');
+            }
+
+            // Kiểm tra định dạng file
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (!in_array($fileType, $allowedTypes)) {
+                throw new Exception('Chỉ chấp nhận file ảnh (JPEG, PNG, GIF)');
+            }
+
+            // Tạo tên file mới để tránh trùng lặp
+            $newFileName = uniqid() . '_' . $fileName;
+            $uploadPath = 'uploads/avatars/' . $newFileName;
+
+            // Tạo thư mục nếu chưa tồn tại
+            if (!file_exists('uploads/avatars')) {
+                mkdir('uploads/avatars', 0777, true);
+            }
+
+            // Di chuyển file upload vào thư mục đích
+            if (move_uploaded_file($fileTmpName, $uploadPath)) {
+                // Lưu đường dẫn ảnh vào session hoặc database
+                session_start();
+                $_SESSION['avatar'] = $uploadPath;
+                
+                sendJsonResponse(true, ['avatarUrl' => $uploadPath], 'Upload ảnh thành công');
+            } else {
+                throw new Exception('Không thể lưu file ảnh');
+            }
+            break;
+
+        case 'getAvatar':
+            session_start();
+            $avatarUrl = $_SESSION['avatar'] ?? 'img/me.jpg'; // Đường dẫn ảnh mặc định
+            sendJsonResponse(true, ['avatarUrl' => $avatarUrl]);
             break;
 
         default:

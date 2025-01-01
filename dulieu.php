@@ -168,9 +168,10 @@ try {
     <title>Quản lý dữ liệu CSV</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: "Palatino Linotype", Times, serif;
+            margin: 10px;
             background-color: #f5f5f5;
+            /* overflow: hidden; */
         }
         .container {
             max-width: 800px;
@@ -203,15 +204,18 @@ try {
             border-radius: 4px;
         }
         button {
-            background-color: #4CAF50;
+            background-color: darkblue;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: "Palatino Linotype", Times, serif;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: blue;
         }
         .message {
             padding: 10px;
@@ -229,11 +233,15 @@ try {
             border: 1px solid #ebccd1;
         }
         .back-button {
-            background-color: #666;
+            background-color: darkred;
             margin-top: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: "Palatino Linotype", Times, serif;
+            color: white;
         }
         .back-button:hover {
-            background-color: #555;
+            background-color: red;
         }
     </style>
 </head>
